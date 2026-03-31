@@ -1,1 +1,131 @@
-Save today 🐸
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cosy ADHD Reset 🐸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #F7F3EF;
+      color: #444;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    p.subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 20px;
+      margin-bottom: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    button {
+      background: #A8BFA3;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      margin: 5px;
+      font-size: 14px;
+    }
+
+    textarea {
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      padding: 10px;
+      font-size: 14px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .entry {
+      background: #FAF8F6;
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Cosy ADHD Reset 🐸</h1>
+  <p class="subtitle">A calm little space for your brain 💛</p>
+
+  <div class="card">
+    <h3>How do you feel?</h3>
+    <button onclick="setEnergy('Low energy')">Low energy</button>
+    <button onclick="setEnergy('Foggy')">Foggy</button>
+    <button onclick="setEnergy('Okay')">Okay</button>
+  </div>
+
+  <div class="card">
+    <h3>What did you do for yourself today?</h3>
+    <textarea id="selfcare" rows="4"></textarea>
+  </div>
+
+  <button onclick="saveEntry()">Save today 🐸</button>
+
+  <div class="card">
+    <h3>Previous entries</h3>
+    <div id="entries"></div>
+  </div>
+
+  <script>
+    let energy = "";
+
+    function setEnergy(e) {
+      energy = e;
+      alert("Set to: " + e);
+    }
+
+    function saveEntry() {
+      const text = document.getElementById("selfcare").value;
+      const date = new Date().toLocaleDateString();
+
+      const entry = {
+        date,
+        energy,
+        text
+      };
+
+      const entries = JSON.parse(localStorage.getItem("entries") || "[]");
+      entries.unshift(entry);
+      localStorage.setItem("entries", JSON.stringify(entries));
+
+      document.getElementById("selfcare").value = "";
+      displayEntries();
+    }
+
+    function displayEntries() {
+      const entries = JSON.parse(localStorage.getItem("entries") || "[]");
+      const container = document.getElementById("entries");
+      container.innerHTML = "";
+
+      entries.forEach(e => {
+        const div = document.createElement("div");
+        div.className = "entry";
+        div.innerHTML = "<b>" + e.date + "</b><br>Energy: " + e.energy + "<br>" + e.text;
+        container.appendChild(div);
+      });
+    }
+
+    displayEntries();
+  </script>
+
+</body>
+</html>
