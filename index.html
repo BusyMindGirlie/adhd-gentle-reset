@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Cosy ADHD Reset 🐸</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -14,17 +13,12 @@
       max-width: 500px;
       margin: auto;
     }
-
-    h1 {
-      text-align: center;
-    }
-
+    h1 { text-align: center; }
     p.subtitle {
       text-align: center;
       color: #666;
       margin-bottom: 20px;
     }
-
     .card {
       background: white;
       padding: 20px;
@@ -32,7 +26,6 @@
       margin-bottom: 15px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     }
-
     button {
       background: #A8BFA3;
       color: white;
@@ -43,7 +36,6 @@
       margin: 5px;
       font-size: 14px;
     }
-
     textarea {
       border-radius: 10px;
       border: 1px solid #ddd;
@@ -52,7 +44,6 @@
       width: 100%;
       box-sizing: border-box;
     }
-
     .entry {
       background: #FAF8F6;
       padding: 10px;
@@ -62,7 +53,6 @@
   </style>
 </head>
 <body>
-
   <h1>Cosy ADHD Reset 🐸</h1>
   <p class="subtitle">A calm little space for your brain 💛</p>
 
@@ -97,12 +87,7 @@
       const text = document.getElementById("selfcare").value;
       const date = new Date().toLocaleDateString();
 
-      const entry = {
-        date,
-        energy,
-        text
-      };
-
+      const entry = { date, energy, text };
       const entries = JSON.parse(localStorage.getItem("entries") || "[]");
       entries.unshift(entry);
       localStorage.setItem("entries", JSON.stringify(entries));
@@ -126,6 +111,5 @@
 
     displayEntries();
   </script>
-
 </body>
 </html>
