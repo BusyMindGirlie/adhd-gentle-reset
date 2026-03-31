@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cosy ADHD Reset 🐸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #F7F3EF;
+      color: #3A3A3A;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 500px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 4px;
+    }
+
+    p.subtitle {
+      margin-top: 0;
+      color: #6b6b6b;
+    }
+
+    .card {
+      background: white;
+      padding: 16px;
+      border-radius: 20px;
+      margin-top: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    textarea, input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border-radius: 12px;
+      border: 1px solid #ddd;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .chip {
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: none;
+      background: #DCEAD7;
+      color: #3f5a3f;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .footer-btn {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: none;
+      background: #A8BFA3;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>🐸 Cosy ADHD Reset</h1>
+    <p class="subtitle">small is valid ✨</p>
+
+    <div class="card">
+      <h3>Today feels like…</h3>
+      <div class="chips">
+        <button class="chip">Low energy</button>
+        <button class="chip">Foggy</button>
+        <button class="chip">Steady</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Three tiny wins</h3>
+      <input id="win1" placeholder="Tiny win 1" />
+      <input id="win2" placeholder="Tiny win 2" />
+      <input id="win3" placeholder="Tiny win 3" />
+    </div>
+
+    <div class="card">
+      <h3>Brain dump</h3>
+      <textarea id="brain" placeholder="Get it out…" rows="5"></textarea>
+    </div>
+
+    <div class="card">
+      <h3>Kind ending</h3>
+      <textarea id="ending" placeholder="This was enough because…" rows="4"></textarea>
+    </div>
+
+    <button class="footer-btn" onclick="clearData()">Reset 🐸</button>
+  </div>
+
+  <script>
+    // Load saved data
+    window.onload = () => {
+      document.getElementById('win1').value = localStorage.getItem('win1') || '';
+      document.getElementById('win2').value = localStorage.getItem('win2') || '';
+      document.getElementById('win3').value = localStorage.getItem('win3') || '';
+      document.getElementById('brain').value = localStorage.getItem('brain') || '';
+      document.getElementById('ending').value = localStorage.getItem('ending') || '';
+    };
+
+    // Save when typing
+    document.addEventListener('input', (e) => {
+      if (e.target.id) {
+        localStorage.setItem(e.target.id, e.target.value);
+      }
+    });
+
+    // Reset everything
+    function clearData() {
+      localStorage.clear();
+      location.reload();
+    }
+  </script>
+</body>
+</html>
